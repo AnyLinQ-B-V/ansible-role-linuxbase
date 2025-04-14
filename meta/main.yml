@@ -2,11 +2,11 @@
 galaxy_info:
   author: Ronny Roethof <ronny@roethof.net>
   namespace: anylinq
-  role_name: ansibletemplate
+  role_name: linuxbase
   description: A template for creating new Ansible roles
   company: AnyLinQ B.V.
 
-  issue_tracker_url: https://github.com/AnyLinQ-B-V/template-ansible-role/issues
+  issue_tracker_url: https://github.com/AnyLinQ-B-V/ansible-role-linuxbase/issues
 
   license: MIT
 

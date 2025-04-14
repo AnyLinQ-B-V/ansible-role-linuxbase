@@ -1,2 +1,86 @@
 ---
-# defaults file for ansibletemplate
+# defaults file for linuxbase
+
+# Python interpreter settings
+check_python_interpreter:
+  debian:
+    other: '/usr/bin/python3'
+  ubuntu:
+    other: '/usr/bin/python3'
+  redhat:
+    other: '/usr/bin/python3'
+  other: '/usr/bin/python3'
+
+# Base package configurations
+base_packages:
+  debian:
+    other: ['python3', 'sudo', 'apt-transport-https', 'ca-certificates', 'curl', 'gnupg']
+  ubuntu:
+    other: ['python3', 'sudo', 'apt-transport-https', 'ca-certificates', 'curl', 'gnupg']
+  redhat:
+    other: ['python3', 'sudo', 'ca-certificates', 'curl']
+
+# Virtualization specific packages
+vm_packages:
+  vmware:
+    debian:
+      other: ['open-vm-tools']
+    ubuntu:
+      other: ['open-vm-tools']
+    redhat:
+      other: ['open-vm-tools']
+  kvm:
+    debian:
+      other: ['qemu-guest-agent']
+    ubuntu:
+      other: ['qemu-guest-agent']
+    redhat:
+      other: ['qemu-guest-agent']
+
+# System update packages
+update_packages:
+  debian:
+    other: ['systemd', 'unattended-upgrades', 'apt-listchanges']
+  ubuntu:
+    other: ['systemd', 'unattended-upgrades', 'apt-listchanges']
+  redhat:
+    other: ['systemd']
+
+# SSH Configuration
+ssh:
+  configure: true
+  listen:
+    - '0.0.0.0'
+    - '::'
+  port: "{{ ansible_port }}"
+  allow_root: false
+  auth_multi: false
+  auth_pwd: true
+  auth_pubkey: true
+  permit_empty_passwords: false
+  max_auth_tries: 6
+  login_grace_time: 120
+  strict_modes: true
+  x11_forwarding: false
+  msg: false
+  banner_msg:
+    - ' '
+    - '----------------------'
+    - '| Restricted  access |'
+    - '| You shall not pass |'
+    - '----------------------'
+    - ' '
+  welcome_msg:
+    - ' '
+    - '----------------------------------'
+    - '|     Welcome to this server     |'
+    - '| Your activities will be logged |'
+    - '|       Proceed with care!       |'
+    - '----------------------------------'
+    - ' '
+  match:
+    address: {}  # example: '10.0.0.*': ['PermitRootLogin yes']
+    user: {}
+
+repo:
+  provider: 'debian.org'  # or 'hetzner.com'
